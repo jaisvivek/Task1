@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" id="searchInput" placeholder="Search by college name">
+        <select id="sortSelect">
+            <option value="rating-asc">Rating: Low to High</option>
+            <option value="rating-desc">Rating: High to Low</option>
+            <option value="fees-asc">Fees: Low to High</option>
+            <option value="fees-desc">Fees: High to Low</option>
+            <option value="userReview-asc">User Review: Low to High</option>
+            <option value="userReview-desc">User Review: High to Low</option>
+        </select>
+        <table id="collegeTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Collegedunia Rating</th>
+                    <th>Fees</th>
+                    <th>User Review Rating</th>
+                    <th>Featured</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Dummy JSON data for colleges
+        const colleges = [
+            { name: "Dummy College 1", rating: 4.5, fees: 10000, userReview: 8, featured: true },
+            { name: "Dummy College 2", rating: 3.8, fees: 12000, userReview: 7, featured: false },
+            { name: "Dummy College 3", rating: 4.2, fees: 11000, userReview: 8, featured: true },
+            { name: "Dummy College 4", rating: 3.9, fees: 13000, userReview: 6, featured: false },
+            { name: "Dummy College 5", rating: 4.0, fees: 15000, userReview: 7, featured: true },
+            { name: "Dummy College 6", rating: 4.6, fees: 9000, userReview: 9, featured: false },
+            { name: "Dummy College 7", rating: 3.7, fees: 14000, userReview: 6, featured: true },
+            { name: "Dummy College 8", rating: 4.1, fees: 11000, userReview: 8, featured: false },
+            { name: "Dummy College 9", rating: 4.3, fees: 12000, userReview: 7, featured: true },
+            { name: "Dummy College 10", rating: 4.4, fees: 10000, userReview: 9, featured: false }
+        ];
+
+        // Function to populate the table with college data
+        function populateTable(data) {
+            const tableBody = document.querySelector("#collegeTable tbody");
+            tableBody.innerHTML = "";
+
+            data.forEach(college => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${college.name}</td>
+                    <td>${college.rating}</td>
+                    <td>${college.fees}</td>
+                    <td>${college.userReview}</td>
+                    <td>${college.featured ? "Featured" : ""}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Initial population of the table
+        populateTable(colleges);
+
+        // Implement sorting, searching, and infinite scroll functionalities
+    </script>
+</body>
+
+</html>
